@@ -1,0 +1,64 @@
+<%= form_with(model: customer, local: true) do |form| %>
+  <% if customer.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(customer.errors.count, "error") %> prohibited this customer from being saved:</h2>
+      <ul>
+      <% customer.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <label>Basic Info</label>
+  <div class="form-row align-items-center">
+    <div class="col-sm-6 my-1">
+      <%= form.label :identification, class: 'sr-only' %>
+      <%= form.text_field :identification, class: "form-control", autofocus: true, placeholder: "Identification" %>
+    </div>
+    <div class="col-sm-6 my-1">
+      <%= form.label :first_name, class: 'sr-only' %>
+      <%= form.text_field :first_name, class: "form-control", placeholder: "First Name" %>
+    </div>
+    <div class="col-sm-6 my-1">
+      <%= form.label :last_name, class: 'sr-only' %>
+      <%= form.text_field :last_name, class: "form-control", placeholder: "Last Name" %>
+    </div>
+    <div class="col-sm-6 my-1">
+      <%= form.label :gender, class: 'sr-only' %>
+      <%= form.collection_select :gender, full_genders, :last, :first, { prompt: 'Select Gender' }, class: "form-control", placeholder: "Gender" %>
+    </div>
+  </div>
+  <br>
+
+  <label>Contact Info</label>
+  <div class="form-row align-items-center">
+    <div class="col-sm-6 my-1">
+      <%= form.label :address, class: 'sr-only' %>
+      <%= form.text_field :address, class: "form-control", placeholder: 'Address' %>
+    </div>
+    <div class="col-sm-6 my-1">
+      <%= form.label :phone, class: 'sr-only' %>
+      <%= form.text_field :phone, class: "form-control", placeholder: 'Phone number' %>
+    </div>
+  </div>
+  <br>
+
+  <label>Business Info</label>
+  <div class="form-row align-items-center">
+    <div class="col-sm-6 my-1">
+      <%= form.label :employee_id, class: 'sr-only' %>
+      <%= form.select :employee_id, options_from_collection_for_select(Employee.all, "id", "full_name", params[:customer_id]), { prompt: 'Select Employee' }, class: "form-control" %>
+    </div>
+    <div class="col-sm-6 my-1">
+      <%= form.label :debt, class: 'sr-only' %>
+      <%= form.number_field :debt, class: "form-control", placeholder: 'Debt' %>
+    </div>
+  </div>
+  <br>
+
+  <div class="form-group">
+    <%= form.submit 'Save', class: "btn btn-primary" %>
+    <%= link_to 'Back', :back, class: "btn btn-primary" %>
+  </div>
+<% end %>

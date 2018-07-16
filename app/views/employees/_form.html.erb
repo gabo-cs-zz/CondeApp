@@ -1,0 +1,52 @@
+<%= form_with(model: employee, local: true) do |form| %>
+  <% if employee.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(employee.errors.count, "error") %> prohibited this employee from being saved:</h2>
+
+      <ul>
+      <% employee.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <label>Basic Info</label>
+  <div class="form-row align-items-center">
+    <div class="col-sm-6 my-1">
+      <%= form.label :identification, class: 'sr-only' %>
+      <%= form.text_field :identification, class: "form-control", autofocus: true, placeholder: "Identification" %>
+    </div>
+    <div class="col-sm-6 my-1">
+      <%= form.label :first_name, class: 'sr-only' %>
+      <%= form.text_field :first_name, class: "form-control", placeholder: "First Name" %>
+    </div>
+    <div class="col-sm-6 my-1">
+      <%= form.label :last_name, class: 'sr-only' %>
+      <%= form.text_field :last_name, class: "form-control", placeholder: "Last Name" %>
+    </div>
+    <div class="col-sm-6 my-1">
+      <%= form.label :gender, class: 'sr-only' %>
+      <%= form.collection_select :gender, full_genders, :last, :first, { prompt: 'Select Gender' }, class: "form-control", placeholder: "Gender" %>
+    </div>
+  </div>
+  <br>
+
+  <label>Contact Info</label>
+  <div class="form-row align-items-center">
+    <div class="col-sm-6 my-1">
+      <%= form.label :address, class: 'sr-only' %>
+      <%= form.text_field :address, class: "form-control", placeholder: 'Address' %>
+    </div>
+    <div class="col-sm-6 my-1">
+      <%= form.label :phone, class: 'sr-only' %>
+      <%= form.text_field :phone, class: "form-control", placeholder: 'Phone number' %>
+    </div>
+  </div>
+  <br>
+
+  <div class="form-group">
+    <%= form.submit 'Save', class: "btn btn-primary" %>
+    <%= link_to 'Back', :back, class: "btn btn-primary" %>
+  </div>
+<% end %>
