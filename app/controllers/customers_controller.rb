@@ -1,32 +1,29 @@
 class CustomersController < ApplicationController
-  before_action :set_customer, only: [:show, :edit, :update, :destroy]
+  before_action :set_customer, only: [:show, :edit, :update, :destroy, :delete]
   before_action :authenticate_user!
 
-  # GET /customers
-  # GET /customers.json
   def index
-    @customers = Customer.where(status: 1).paginate(page: params[:page], per_page: 5)
+    if current_user.email == 'gabrielomar2809@gmail.com'
+      @customers = Customer.paginate(page: params[:page], per_page: 5)
+    elsif current_user.email == 'del@conde.com'
+      @customers = Customer.where(status: 0).paginate(page: params[:page], per_page: 5)
+    else
+      @customers = Customer.where(status: 1).paginate(page: params[:page], per_page: 5)
+    end
   end
 
-  # GET /customers/1
-  # GET /customers/1.json
   def show
   end
 
-  # GET /customers/new
   def new
     @customer = Customer.new
   end
 
-  # GET /customers/1/edit
   def edit
   end
 
-  # POST /customers
-  # POST /customers.json
   def create
     @customer = Customer.new(customer_params)
-
     respond_to do |format|
       if @customer.save
         format.html { redirect_to @customer, notice: 'Customer was successfully created.' }
@@ -38,8 +35,6 @@ class CustomersController < ApplicationController
     end
   end
 
-  # PATCH/PUT /customers/1
-  # PATCH/PUT /customers/1.json
   def update
     respond_to do |format|
       if @customer.update(customer_params)
@@ -52,8 +47,20 @@ class CustomersController < ApplicationController
     end
   end
 
-  # DELETE /customers/1
-  # DELETE /customers/1.json
+  # Soft delete
+  def delete
+    @customer.status = 0
+    respond_to do |format|
+      if @customer.save
+        format.html { redirect_to customers_url, notice: 'Customer was successfully deleted.' }
+        format.json { head :no_content }
+      else
+        format.html { render :show }
+        format.json { render json: @customer.errors, status: :unprocessable_entity }
+      end
+    end
+  end
+
   def destroy
     @customer.destroy
     respond_to do |format|
@@ -63,12 +70,10 @@ class CustomersController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
     def set_customer
       @customer = Customer.find(params[:id])
     end
 
-    # Never trust parameters from the scary internet, only allow the white list through.
     def customer_params
       params.require(:customer).permit(:identification, :first_name, :last_name, :address, :phone, :gender, :employee_id, :debt)
     end
