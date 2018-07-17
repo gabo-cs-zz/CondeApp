@@ -30,3 +30,6 @@
     </tbody>
   </table>
 </div>
+<br>
+<%= will_paginate @employees, renderer: WillPaginate::ActionView::BootstrapLinkRenderer, list_classes: %w(pagination justify-content-center) %>
+<!-- <%= page_entries_info @employees %> -->

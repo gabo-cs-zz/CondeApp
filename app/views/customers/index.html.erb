@@ -29,9 +29,12 @@
           <td><%= customer.full_debt %></td>
           <td><%= link_to 'Show', customer, class: 'btn btn-link' %></td>
           <td><%= link_to 'Edit', edit_customer_path(customer), class: 'btn btn-link' %></td>
-          <td><%= link_to 'Destroy', customer, method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-link' %></td>
+          <td><%= link_to 'Delete', customer, method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-link' %></td>
         </tr>
       <% end %>
     </tbody>
   </table>
 </div>
+<br>
+<%= will_paginate @customers, renderer: WillPaginate::ActionView::BootstrapLinkRenderer, list_classes: %w(pagination justify-content-center) %>
+<!-- <%= page_entries_info @customers %> -->
