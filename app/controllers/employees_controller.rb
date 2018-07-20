@@ -1,10 +1,10 @@
 class EmployeesController < ApplicationController
-  before_action :set_employee, only: [:show, :edit, :update, :destroy, :delete]
+  before_action :set_employee, only: [:show, :edit, :update, :destroy]
   before_action :authenticate_user!
 
   def index
     if current_user.email == 'gabrielomar2809@gmail.com'
-      @employees = Employee.paginate(page: params[:page], per_page: 5)
+      @employees = Employee.all.paginate(page: params[:page], per_page: 5)
     elsif current_user.email == 'del@conde.com'
       @employees = Employee.where(status: 0).paginate(page: params[:page], per_page: 5)
     else
@@ -47,25 +47,17 @@ class EmployeesController < ApplicationController
     end
   end
 
-  # Soft delete
-  def delete
-    @employee.status = 0
-    respond_to do |format|
-      if @employee.save
-        format.html { redirect_to employees_url, notice: 'Employee was successfully deleted.' }
-        format.json { head :no_content }
-      else
-        format.html { render :show }
-        format.json { render json: @customer.errors, status: :unprocessable_entity }
-      end
-    end
-  end
-
   def destroy
-    @employee.destroy
-    respond_to do |format|
-      format.html { redirect_to employees_url, notice: 'Employee was successfully destroyed.' }
-      format.json { head :no_content }
+    if @sw
+      redirect_to employees_url, alert: 'You cannot delete an employee who has customers associated.'
+      @sw = false
+    else
+      @employee.soft_delete
+      respond_to do |format|
+        format.json { head :no_content }
+        format.html { redirect_to employees_url, notice: 'Employee was successfully destroyed.' }
+        format.js { render :js => "console.log(#{@sw})" }
+      end
     end
   end
 

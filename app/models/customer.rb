@@ -4,4 +4,8 @@ class Customer < ApplicationRecord
   def full_debt
     "$ #{debt}"
   end
+
+  def soft_delete
+    update_attribute(:status, 0)
+  end
 end

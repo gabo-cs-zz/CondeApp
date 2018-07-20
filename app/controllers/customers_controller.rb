@@ -1,10 +1,10 @@
 class CustomersController < ApplicationController
-  before_action :set_customer, only: [:show, :edit, :update, :destroy, :delete]
+  before_action :set_customer, only: [:show, :edit, :update, :destroy]
   before_action :authenticate_user!
 
   def index
     if current_user.email == 'gabrielomar2809@gmail.com'
-      @customers = Customer.paginate(page: params[:page], per_page: 5)
+      @customers = Customer.all.paginate(page: params[:page], per_page: 5)
     elsif current_user.email == 'del@conde.com'
       @customers = Customer.where(status: 0).paginate(page: params[:page], per_page: 5)
     else
@@ -47,22 +47,8 @@ class CustomersController < ApplicationController
     end
   end
 
-  # Soft delete
-  def delete
-    @customer.status = 0
-    respond_to do |format|
-      if @customer.save
-        format.html { redirect_to customers_url, notice: 'Customer was successfully deleted.' }
-        format.json { head :no_content }
-      else
-        format.html { render :show }
-        format.json { render json: @customer.errors, status: :unprocessable_entity }
-      end
-    end
-  end
-
   def destroy
-    @customer.destroy
+    @customer.soft_delete
     respond_to do |format|
       format.html { redirect_to customers_url, notice: 'Customer was successfully destroyed.' }
       format.json { head :no_content }
