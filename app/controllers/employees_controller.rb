@@ -3,12 +3,10 @@ class EmployeesController < ApplicationController
   before_action :authenticate_user!
 
   def index
-    if current_user.email == 'gabrielomar2809@gmail.com'
-      @employees = Employee.all.paginate(page: params[:page], per_page: 5)
-    elsif current_user.email == 'del@conde.com'
-      @employees = Employee.where(status: 0).paginate(page: params[:page], per_page: 5)
+    if current_user.email.include? 'gabrielomar'
+      @employees = Employee.with_deleted.paginate(page: params[:page], per_page: 5)
     else
-      @employees = Employee.where(status: 1).paginate(page: params[:page], per_page: 5)
+      @employees = Employee.without_deleted.paginate(page: params[:page], per_page: 5)
     end
   end
 
@@ -48,17 +46,17 @@ class EmployeesController < ApplicationController
   end
 
   def destroy
-    if @sw
-      redirect_to employees_url, alert: 'You cannot delete an employee who has customers associated.'
-      @sw = false
-    else
-      @employee.soft_delete
-      respond_to do |format|
-        format.json { head :no_content }
-        format.html { redirect_to employees_url, notice: 'Employee was successfully destroyed.' }
-        format.js { render :js => "console.log(#{@sw})" }
-      end
-    end
+    respond_to do |format|
+       if @employee.destroy
+         format.html { redirect_to employees_url, notice: 'Employee was successfully destroyed.' }
+         format.json { head :no_content }
+       else
+         format.html { redirect_to employees_url
+           flash[:alert] = "Cannot delete an employee who has customer associated" }
+         # format.html { redirect_to employees_url }
+         format.json { render json: @employee.errors, status: :unprocessable_entity }
+       end
+     end
   end
 
   private

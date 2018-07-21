@@ -3,13 +3,7 @@ class CustomersController < ApplicationController
   before_action :authenticate_user!
 
   def index
-    if current_user.email == 'gabrielomar2809@gmail.com'
-      @customers = Customer.all.paginate(page: params[:page], per_page: 5)
-    elsif current_user.email == 'del@conde.com'
-      @customers = Customer.where(status: 0).paginate(page: params[:page], per_page: 5)
-    else
-      @customers = Customer.where(status: 1).paginate(page: params[:page], per_page: 5)
-    end
+    @customers = Customer.without_deleted.paginate(page: params[:page], per_page: 5)
   end
 
   def show
@@ -48,7 +42,7 @@ class CustomersController < ApplicationController
   end
 
   def destroy
-    @customer.soft_delete
+    @customer.destroy
     respond_to do |format|
       format.html { redirect_to customers_url, notice: 'Customer was successfully destroyed.' }
       format.json { head :no_content }
