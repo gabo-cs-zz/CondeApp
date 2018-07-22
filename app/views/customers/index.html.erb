@@ -1,11 +1,23 @@
 <h1>Customers</h1>
+<br>
+<div class="dropdown">
+  <a class="btn btn-secondary dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+    Filter by gender
+  </a>
+  <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+    <a class="dropdown-item" href="/customers">All</a>
+    <a class="dropdown-item" href="/customers?gender=0">Male</a>
+    <a class="dropdown-item" href="/customers?gender=1">Female</a>
+    <a class="dropdown-item" href="/customers?gender=2">Undefined</a>
+  </div>
+</div>
+<br>
 <div class="table-responsive">
   <table class="table">
     <thead>
       <tr>
         <th scope="col">Identification</th>
-        <th scope="col">First name</th>
-        <th scope="col">Last name</th>
+        <th scope="col">Name</th>
         <th scope="col">Address</th>
         <th scope="col">Phone</th>
         <th scope="col">Gender</th>
@@ -19,8 +31,7 @@
       <% @customers.each do |customer| %>
         <tr>
           <td><%= customer.identification %></td>
-          <td><%= customer.first_name %></td>
-          <td><%= customer.last_name %></td>
+          <td><%= customer.full_name %></td>
           <td><%= customer.address %></td>
           <td><%= customer.phone %></td>
           <td><%= customer.gender %></td>
@@ -33,6 +44,7 @@
       <% end %>
     </tbody>
   </table>
+  <%= content_tag :p, "No records found", class: "text-center" if @customers.empty? %>
 </div>
 <br>
 <%= will_paginate @customers, renderer: WillPaginate::ActionView::BootstrapLinkRenderer, list_classes: %w(pagination justify-content-center) %>

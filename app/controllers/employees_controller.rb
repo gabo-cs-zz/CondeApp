@@ -3,11 +3,7 @@ class EmployeesController < ApplicationController
   before_action :authenticate_user!
 
   def index
-    if current_user.email.include? 'gabrielomar'
-      @employees = Employee.with_deleted.paginate(page: params[:page], per_page: 5)
-    else
-      @employees = Employee.without_deleted.paginate(page: params[:page], per_page: 5)
-    end
+    (current_user.email.include? 'gabrielomar') ? show_admin : show_no_admin
   end
 
   def show
@@ -66,5 +62,21 @@ class EmployeesController < ApplicationController
 
     def employee_params
       params.require(:employee).permit(:identification, :first_name, :last_name, :address, :phone, :gender)
+    end
+
+    def show_admin
+      if params[:gender].present?
+       @employees= Employee.with_deleted.where(gender: params[:gender]).paginate(page: params[:page], per_page: 5)
+      else
+       @employees = Employee.with_deleted.paginate(page: params[:page], per_page: 5)
+      end
+    end
+
+    def show_no_admin
+      if params[:gender].present?
+       @employees= Employee.without_deleted.where(gender: params[:gender]).paginate(page: params[:page], per_page: 5)
+      else
+       @employees = Employee.without_deleted.paginate(page: params[:page], per_page: 5)
+      end
     end
 end

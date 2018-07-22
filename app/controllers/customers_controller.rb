@@ -3,7 +3,7 @@ class CustomersController < ApplicationController
   before_action :authenticate_user!
 
   def index
-    @customers = Customer.without_deleted.paginate(page: params[:page], per_page: 5)
+    (current_user.email.include? 'gabrielomar') ? show_admin : show_no_admin
   end
 
   def show
@@ -56,5 +56,21 @@ class CustomersController < ApplicationController
 
     def customer_params
       params.require(:customer).permit(:identification, :first_name, :last_name, :address, :phone, :gender, :employee_id, :debt)
+    end
+
+    def show_admin
+      if params[:gender].present?
+       @customers= Customer.with_deleted.where(gender: params[:gender]).paginate(page: params[:page], per_page: 5)
+      else
+       @customers = Customer.with_deleted.paginate(page: params[:page], per_page: 5)
+      end
+    end
+
+    def show_no_admin
+      if params[:gender].present?
+       @customers= Customer.without_deleted.where(gender: params[:gender]).paginate(page: params[:page], per_page: 5)
+      else
+       @customers = Customer.without_deleted.paginate(page: params[:page], per_page: 5)
+      end
     end
 end
