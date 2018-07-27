@@ -24,21 +24,29 @@
       </ul>
     </div>
     <div class="btn-group">
-      <button type="button" class="btn btn-success dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-        <%= current_user.email %>
+      <button type="button" class="btn btn-light dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+        <%= current_user.email.split(/@/).first %>
       </button>
       <div class="dropdown-menu">
         <%= link_to "Logout", destroy_user_session_path, method: :delete, class: 'dropdown-item' %>
       </div>
     </div>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
   <% end %>
-  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-    <span class="navbar-toggler-icon"></span>
-  </button>
 </nav>
 <div id="flash">
   <% flash.each do |key, value| %>
-    <%= content_tag :div, value, id: "flash-#{key}", class: "alert alert-success" if flash[:notice] %>
+    <!-- <%= content_tag :div, value, id: "flash-#{key}", class: "alert alert-success" if flash[:notice] %> -->
+    <% if flash[:notice] %>
+      <div class="alert alert-success" role="alert">
+        <strong>Great! </strong><%= value %>
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close" style="padding-right:80">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+    <% end %>
     <% if flash[:alert] %>
       <div class="alert alert-danger alert-dismissible fade show" role="alert">
         <strong>Sorry! </strong><%= value %>

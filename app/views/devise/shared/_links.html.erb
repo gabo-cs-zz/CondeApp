@@ -4,7 +4,7 @@
 <% end -%>
 
 <%- if devise_mapping.recoverable? && controller_name != 'passwords' && controller_name != 'registrations' %>
-  <li><%= link_to "Forgot your password?", new_password_path(resource_name), class: 'tag my-2' %></li>
+  <li><%= link_to "Forgot your password?", new_password_path(resource_name) %></li>
 <% end -%>
 
 <%- if devise_mapping.confirmable? && controller_name != 'confirmations' %>
@@ -20,7 +20,5 @@
     <%= link_to "Sign in with #{OmniAuth::Utils.camelize(provider)}", omniauth_authorize_path(resource_name, provider) %>
   <% end -%>
 <% end -%>
-
-<li><%= link_to "↵ Back", :back, class: 'tag my-2' %></li>
 
 </ul>

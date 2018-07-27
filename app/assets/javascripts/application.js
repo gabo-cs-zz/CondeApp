@@ -10,12 +10,12 @@
 // Read Sprockets README (https://github.com/rails/sprockets#sprockets-directives) for details
 // about supported directives.
 //
-//= require popper
-//= require turbolinks
-//= require bootstrap
 //= require jquery
 //= require jquery_ujs
+//= require popper
+//= require bootstrap
 //= require bootstrap-sprockets
+//= require_tree .
 $(document).ready(function(){
     $(".dropdown-toggle").dropdown();
     $("#flash-notice").fadeOut(3000);
