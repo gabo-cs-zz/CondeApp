@@ -44,8 +44,7 @@
       <% end %>
     </tbody>
   </table>
-  <%= content_tag :p, "No records found", class: "text-center" if @customers.empty? %>
 </div>
 <br>
 <%= will_paginate @customers, renderer: WillPaginate::ActionView::BootstrapLinkRenderer, list_classes: %w(pagination justify-content-center) %>
-<!-- <%= page_entries_info @customers %> -->
+<p class="font-weight-light text-center"><%= page_entries_info @customers, class: "text-center" %></p>

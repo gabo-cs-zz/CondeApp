@@ -28,5 +28,10 @@
   <%= @employee.gender %>
 </p>
 
+<p>
+  <strong>Customers associated:</strong>
+  <%= @employee.customers_associated %>
+</p>
+
 <%= link_to 'Edit', edit_employee_path(@employee), class: "btn btn-primary" %>
 <%= link_to 'Back', employees_path, class: "btn btn-primary" %>

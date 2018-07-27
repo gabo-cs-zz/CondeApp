@@ -48,7 +48,7 @@ class EmployeesController < ApplicationController
          format.json { head :no_content }
        else
          format.html { redirect_to employees_url
-           flash[:alert] = "Cannot delete an employee who has customer associated" }
+           flash[:alert] = "Cannot delete an employee who has customer(s) associated" }
          # format.html { redirect_to employees_url }
          format.json { render json: @employee.errors, status: :unprocessable_entity }
        end
