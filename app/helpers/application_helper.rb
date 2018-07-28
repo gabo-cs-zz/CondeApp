@@ -8,7 +8,7 @@ module ApplicationHelper
   def page_entries_info(collection, options = {})
     entry_name = options[:entry_name] || (collection.empty?? 'entry' :
       collection.first.class.name.split('::').last.titleize)
-      if collection.total_pages < 5
+      if collection.total_entries <= 5
         case collection.size
           when 0; "No #{entry_name.pluralize} found."
           when 1; "Displaying #{collection.total_entries} #{entry_name}."
