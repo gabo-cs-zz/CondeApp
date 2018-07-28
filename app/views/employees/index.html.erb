@@ -13,7 +13,7 @@
 </div>
 <br>
 <div class="table-responsive">
-  <table class="table">
+  <table class="table table-hover table-bordered">
     <thead>
       <tr>
         <th scope="col">Identification</th>
@@ -21,7 +21,7 @@
         <th scope="col">Address</th>
         <th scope="col">Phone</th>
         <th scope="col">Gender</th>
-        <th colspan="3" class="center">Options</th>
+        <th colspan="3" class="text-center">Actions</th>
       </tr>
     </thead>
 
@@ -33,7 +33,7 @@
           <td><%= employee.address %></td>
           <td><%= employee.phone %></td>
           <td><%= employee.gender %></td>
-          <td><%= link_to 'Show', employee, class: 'btn btn-link' %></td>
+          <td><%= link_to 'View', employee, class: 'btn btn-link' %></td>
           <td><%= link_to 'Edit', edit_employee_path(employee), class: 'btn btn-link' %></td>
           <td><%= link_to 'Delete', employee, method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-link' %></td>
         </tr>

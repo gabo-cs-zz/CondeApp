@@ -1,37 +1,39 @@
-<p>
-  <strong>Identification:</strong>
-  <%= @employee.identification %>
-</p>
+<div class="container mt-4 border rounded shadow-sm p-3 mb-5 bg-white rounded">
+  <p>
+    <strong>Identification:</strong>
+    <%= @employee.identification %>
+  </p>
 
-<p>
-  <strong>First name:</strong>
-  <%= @employee.first_name %>
-</p>
+  <p>
+    <strong>First name:</strong>
+    <%= @employee.first_name %>
+  </p>
 
-<p>
-  <strong>Last name:</strong>
-  <%= @employee.last_name %>
-</p>
+  <p>
+    <strong>Last name:</strong>
+    <%= @employee.last_name %>
+  </p>
 
-<p>
-  <strong>Address:</strong>
-  <%= @employee.address %>
-</p>
+  <p>
+    <strong>Address:</strong>
+    <%= @employee.address %>
+  </p>
 
-<p>
-  <strong>Phone:</strong>
-  <%= @employee.phone %>
-</p>
+  <p>
+    <strong>Phone:</strong>
+    <%= @employee.phone %>
+  </p>
 
-<p>
-  <strong>Gender:</strong>
-  <%= @employee.gender %>
-</p>
+  <p>
+    <strong>Gender:</strong>
+    <%= @employee.gender %>
+  </p>
 
-<p>
-  <strong>Customers associated:</strong>
-  <%= @employee.customers_associated %>
-</p>
+  <p>
+    <strong>Customers associated:</strong>
+    <%= @employee.customers_associated %>
+  </p>
 
-<%= link_to 'Edit', edit_employee_path(@employee), class: "btn btn-primary" %>
-<%= link_to 'Back', employees_path, class: "btn btn-primary" %>
+  <%= link_to 'Edit', edit_employee_path(@employee), class: "btn btn-primary" %>
+  <%= link_to 'Back', employees_path, class: "btn btn-primary" %>
+</div>

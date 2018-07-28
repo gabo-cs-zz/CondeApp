@@ -1,42 +1,44 @@
-<p>
-  <strong>Identification:</strong>
-  <%= @customer.identification %>
-</p>
+<div class="container mt-4 border rounded shadow-sm p-3 mb-5 bg-white rounded">
+  <p >
+    <strong>Identification:</strong>
+    <%= @customer.identification %>
+  </p>
 
-<p>
-  <strong>First name:</strong>
-  <%= @customer.first_name %>
-</p>
+  <p>
+    <strong>First name:</strong>
+    <%= @customer.first_name %>
+  </p>
 
-<p>
-  <strong>Last name:</strong>
-  <%= @customer.last_name %>
-</p>
+  <p>
+    <strong>Last name:</strong>
+    <%= @customer.last_name %>
+  </p>
 
-<p>
-  <strong>Address:</strong>
-  <%= @customer.address %>
-</p>
+  <p>
+    <strong>Address:</strong>
+    <%= @customer.address %>
+  </p>
 
-<p>
-  <strong>Phone:</strong>
-  <%= @customer.phone %>
-</p>
+  <p>
+    <strong>Phone:</strong>
+    <%= @customer.phone %>
+  </p>
 
-<p>
-  <strong>Gender:</strong>
-  <%= @customer.gender %>
-</p>
+  <p>
+    <strong>Gender:</strong>
+    <%= @customer.gender %>
+  </p>
 
-<p>
-  <strong>Employee:</strong>
-  <%= @customer.employee.full_name %>
-</p>
+  <p>
+    <strong>Employee:</strong>
+    <%= @customer.employee.full_name %>
+  </p>
 
-<p>
-  <strong>Debt:</strong>
-  <%= @customer.full_debt %>
-</p>
+  <p>
+    <strong>Debt:</strong>
+    <%= @customer.full_debt %>
+  </p>
 
-<%= link_to 'Edit', edit_customer_path(@customer), class: 'btn btn-primary' %>
-<%= link_to 'Back', customers_path, class: 'btn btn-primary' %>
+  <%= link_to 'Edit', edit_customer_path(@customer), class: 'btn btn-primary' %>
+  <%= link_to 'Back', customers_path, class: 'btn btn-primary' %><br /> <br />
+</div>
