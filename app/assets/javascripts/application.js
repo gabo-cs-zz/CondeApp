@@ -20,6 +20,8 @@
 //= require components
 //= require_tree .
 $(document).ready(function(){
+    $("#customers_props div:nth-child(1)").attr("data-react-props", "Object");
+    $("#employees_props div:nth-child(1)").attr("data-react-props", "Object");
     $(".dropdown-toggle").dropdown();
     $("#flash-notice").fadeOut(3000);
 });

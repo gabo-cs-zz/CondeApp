@@ -1,16 +1,4 @@
-<h1>Employees</h1>
-<br>
-<div class="dropdown">
-  <a class="btn btn-secondary dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-    Filter by gender
-  </a>
-  <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-    <a class="dropdown-item" href="/employees">All</a>
-    <a class="dropdown-item" href="/employees?gender=0">Male</a>
-    <a class="dropdown-item" href="/employees?gender=1">Female</a>
-    <a class="dropdown-item" href="/employees?gender=2">Undefined</a>
-  </div>
-</div>
+<%= react_component 'Title', { title: "Employees" } %> 
 <br>
 <div class="table-responsive">
   <table class="table table-hover table-bordered">

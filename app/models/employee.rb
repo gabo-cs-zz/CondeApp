@@ -11,7 +11,8 @@ class Employee < ApplicationRecord
 
   def customers_associated
     list = []
-    Customer.all.each.with_index { |c, i| list << i+1 << c.full_info if c.employee_id == self.id }
+    Customer.all.each.with_index { |c, i| list << i+1 << " " << c.full_info << ", " if c.employee_id == self.id }
+    list.pop
     list.empty? ? 'None.' : list
   end
 end

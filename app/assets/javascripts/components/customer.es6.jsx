@@ -15,15 +15,15 @@ class Customer extends React.Component {
           { this.props.customer.last_name }
         </p>
         <p>
-          <strong>Address:</strong>
+          <strong>Address: </strong>
           { this.props.customer.address }
         </p>
         <p>
-          <strong>Phone:</strong>
+          <strong>Phone: </strong>
           { this.props.customer.phone }
         </p>
         <p>
-          <strong>Gender:</strong>
+          <strong>Gender: </strong>
           { this.props.customer.gender }
         </p>
         <p>

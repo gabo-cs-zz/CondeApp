@@ -1,9 +1,9 @@
-<div class="container mt-4 border rounded shadow-sm p-3 mb-5 bg-white rounded">
+<div id="customers_props" class="container mt-4 border rounded shadow-sm p-3 mb-5 bg-white rounded">
   <%= react_component 'Customer', {
     customer: @customer,
     employee_name: @customer.employee.full_name,
     debt: @customer.full_debt
-    } %>
+  } %>
   <%= link_to 'Edit', edit_customer_path(@customer), class: 'btn btn-primary' %>
   <%= link_to 'Back', customers_path, class: 'btn btn-primary' %><br /> <br />
 </div>

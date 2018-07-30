@@ -1,39 +1,8 @@
-<div class="container mt-4 border rounded shadow-sm p-3 mb-5 bg-white rounded">
-  <p>
-    <strong>Identification:</strong>
-    <%= @employee.identification %>
-  </p>
-
-  <p>
-    <strong>First name:</strong>
-    <%= @employee.first_name %>
-  </p>
-
-  <p>
-    <strong>Last name:</strong>
-    <%= @employee.last_name %>
-  </p>
-
-  <p>
-    <strong>Address:</strong>
-    <%= @employee.address %>
-  </p>
-
-  <p>
-    <strong>Phone:</strong>
-    <%= @employee.phone %>
-  </p>
-
-  <p>
-    <strong>Gender:</strong>
-    <%= @employee.gender %>
-  </p>
-
-  <p>
-    <strong>Customers associated:</strong>
-    <%= @employee.customers_associated %>
-  </p>
-
+<div id="employees_props" class="container mt-4 border rounded shadow-sm p-3 mb-5 bg-white rounded">
+  <%= react_component 'Employee', {
+    employee: @employee,
+    customers_associated: @employee.customers_associated
+  } %>
   <%= link_to 'Edit', edit_employee_path(@employee), class: "btn btn-primary" %>
   <%= link_to 'Back', employees_path, class: "btn btn-primary" %>
 </div>
