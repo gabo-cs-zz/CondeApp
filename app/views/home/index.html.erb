@@ -7,44 +7,21 @@
 </div><br /><hr /><br />
 
 <div class="container">
-  <div class="row">
-    <div class="col-xl-6 col-xs-6 ">
-      <h3 class="mt-2">What We Do</h3>
-      <p class="text-justify">
-        Conde has a profile for people with moneylender businesses or sales on credit. It's oriented to businesses of that type, which have
-        multiple employees in charge of distributing products (cash or ware), to people (customers) who adquire the products on credit.
-      </p>
-      <p class="text-justify">
-        It allows a more optimal handling when it comes to needing records.
-      </p>
-      <p class="text-justify">
-        Conde saves the employees and customers information (basic, contact, business), e.g., how much each client owes employees, phone numbers, address, and so on.<br />
-      </p>
-    </div>
-    <div class="col-xl-6 col-xs-6">
-      <figure class="figure mt-4">
-        <img src="https://images.pexels.com/photos/209224/pexels-photo-209224.jpeg?auto=compress&cs=tinysrgb&h=700&w=1200" class="figure-img img-fluid rounded" alt="No more papers. Use CONDE.">
-      </figure>
-    </div>
-  </div><br /><hr /><br />
-  <div class="row">
-    <div class="col-xl-6 col-xs-6">
-      <figure class="figure mt-4">
-        <img src="https://images.pexels.com/photos/207569/pexels-photo-207569.jpeg?auto=compress&cs=tinysrgb&h=700&w=1200" class="figure-img img-fluid rounded" alt="Be happy. Use CONDE.">
-      </figure>
-    </div>
-    <div class="col-xl-6 col-xs-6">
-      <h3 class="mt-4">Objectives</h3>
-      <p class="text-justify">
-        - To provide our users with better control of their business income through the application, so that they feel more secure when it comes to
-        lending money or selling products.
-      </p>
-      <p class="text-justify">
-        - To optimize the administration of users and employees information through corresponding interfaces. Hoping customers to notice the good performance
-      </p>
-      <p class="text-justify">
-        - To make the employees, when they see everything systematized, feel better because they are in a company that implements the current technologies.
-      </p>
-    </div>
-  </div>
+  <%= react_component 'Textpic', {
+    title: "What We Do",
+    text: "Conde has a profile for people with moneylender businesses or sales on credit. It's oriented to businesses of that type, which have
+    multiple employees in charge of distributing products (cash or ware), to people (customers) who adquire the products on credit.",
+    text2: "It allows a more optimal handling when it comes to needing records.",
+    text3: "Conde saves the employees and customers information (basic, contact, business), e.g., how much each client owes employees, phone numbers, address, and so on.",
+    img_src: "https://images.pexels.com/photos/209224/pexels-photo-209224.jpeg?auto=compress&cs=tinysrgb&h=700&w=1200"
+  } %>
+  <br /><hr /><br />
+  <%= react_component 'Pictext', {
+    title: "Objectives",
+    text: "- To provide our users with better control of their business income through the application, so that they feel more secure when it comes to
+    lending money or selling products.",
+    text2: "- To optimize the administration of users and employees information through corresponding interfaces. Hoping customers to notice the good performance.",
+    text3: "- To make the employees, when they see everything systematized, feel better because they are in a company that implements the current technologies.",
+    img_src: "https://images.pexels.com/photos/207569/pexels-photo-207569.jpeg?auto=compress&cs=tinysrgb&h=700&w=1200"
+  } %>
 </div>
