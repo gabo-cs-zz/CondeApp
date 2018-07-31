@@ -1,30 +1,40 @@
-<% if current_user %>
-  <h2>Sign up</h2>
-
+<div align="center mt-4">
+  <h2 class="ml-3">Join Conde</h2>
+  <div class="col-lg-6 border rounded text-left mt-4">
   <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
     <%= devise_error_messages! %>
-
-    <div class="form-group">
-      <%= f.label :email %><br />
-      <%= f.email_field :email, autofocus: true, autocomplete: "email", class: "form-control" %>
-    </div>
-
-    <div class="form-group">
-      <%= f.label :password %>
-      <% if @minimum_password_length %>
-      <em>(<%= @minimum_password_length %> characters minimum)</em>
-      <% end %><br />
-      <%= f.password_field :password, autocomplete: "off", class: "form-control" %>
-    </div>
-
-    <div class="form-group">
-      <%= f.label :password_confirmation %><br />
-      <%= f.password_field :password_confirmation, autocomplete: "off", class: "form-control" %>
-    </div>
-
-    <div class="actions">
-      <%= f.submit "Sign up", class: "btn btn-primary" %>
-    </div>
-  <% end %>
-<% end %>
-<%= render "devise/shared/links" %>
+      <div class="mt-4">
+        <%= f.label :username %>
+        <%= f.text_field :username, autofocus: true, autocomplete: "off", class: "form-control" %>
+        <em style="font-size: small;">This will be your username.</em>
+      </div>
+      <div class="mt-4">
+        <%= f.label :business_name %>
+        <%= f.text_field :business_name, autofocus: true, autocomplete: "off", class: "form-control" %>
+        <em style="font-size: small;">This will be your organization name.</em>
+      </div>
+      <div class="mt-4">
+        <%= f.label :email %>
+        <%= f.email_field :email, autofocus: true, autocomplete: "email", class: "form-control" %>
+        <em style="font-size: small;">Use a valid email. We’ll never share it with anyone.</em>
+      </div>
+      <div class="mt-4">
+        <%= f.label :password %>
+        <% if @minimum_password_length %>
+        <em>(<%= @minimum_password_length %> characters minimum)</em>
+        <% end %><br />
+        <%= f.password_field :password, autocomplete: "off", class: "form-control" %>
+        <em style="font-size: small;">Use a secure password. We recommend letters, numerals, symbols.</em>
+      </div>
+      <div class="mt-4">
+        <%= f.label :password_confirmation %>
+        <%= f.password_field :password_confirmation, autocomplete: "off", class: "form-control" %>
+        <em style="font-size: small;">Make sure your passwords match.</em>
+      </div>
+      <div class="actions mt-4">
+        <%= f.submit "Sign up", class: "btn btn-primary btn-block" %>
+      </div>
+    <% end %>
+    <%= render "devise/shared/links" %>
+  </div>
+</div>

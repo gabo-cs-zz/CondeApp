@@ -26,5 +26,12 @@
     <% end %>
     <%= render "devise/shared/links" %><br>
     </div>
+
+    <%- if devise_mapping.registerable? && controller_name != 'registrations' %>
+      <div class="col-lg-4 border rounded text-justify mt-4" style="height: 3rem;">
+        <p class="text-center mt-2" style="font-size: medium;">New to Conde? <%= link_to "Create an account.", new_registration_path(resource_name) %></p>
+      </div>
+    <% end -%>
+
     <br>
 </div>

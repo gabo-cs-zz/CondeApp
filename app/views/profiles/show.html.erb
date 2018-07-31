@@ -1,0 +1,11 @@
+<div class="card mt-4">
+  <h5 class="card-header"><%= @profiles.first.username %></h5>
+  <div class="card-body">
+    <h5 class="card-title"><%= @profiles.first.business_name %></h5>
+    <p class="card-text"><%= @profiles.first.email %><br />
+    You have created <%= @profiles.first.employees_created_by_user %> employee(s) and
+     <%= @profiles.first.customers_created_by_user %> customer(s).</p>
+     <p>Your last sign in was at <%= @profiles.first.last_sign_in_at.localtime %></p>
+    <p><%= link_to 'Manage Profile', edit_user_registration_path, class: 'btn btn-info' %> </p>
+  </div>
+</div>
