@@ -18,6 +18,7 @@ class EmployeesController < ApplicationController
 
   def create
     @employee = Employee.new(employee_params)
+    @customer.user_id = current_user.id
     respond_to do |format|
       if @employee.save
         format.html { redirect_to @employee, notice: 'Employee was successfully created.' }
@@ -66,17 +67,17 @@ class EmployeesController < ApplicationController
 
     def show_admin
       if params[:gender].present?
-       @employees= Employee.with_deleted.where(gender: params[:gender]).paginate(page: params[:page], per_page: 5)
+       @employees= Employee.with_deleted.where(gender: params[:gender], user_id: current_user.id).paginate(page: params[:page], per_page: 5)
       else
-       @employees = Employee.with_deleted.paginate(page: params[:page], per_page: 5)
+       @employees = Employee.with_deleted.where(user_id: current_user.id).paginate(page: params[:page], per_page: 5)
       end
     end
 
     def show_no_admin
       if params[:gender].present?
-       @employees= Employee.without_deleted.where(gender: params[:gender]).paginate(page: params[:page], per_page: 5)
+       @employees= Employee.without_deleted.where(gender: params[:gender], user_id: current_user.id).paginate(page: params[:page], per_page: 5)
       else
-       @employees = Employee.without_deleted.paginate(page: params[:page], per_page: 5)
+       @employees = Employee.without_deleted.where(user_id: current_user.id).paginate(page: params[:page], per_page: 5)
       end
     end
 end

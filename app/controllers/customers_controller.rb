@@ -18,6 +18,7 @@ class CustomersController < ApplicationController
 
   def create
     @customer = Customer.new(customer_params)
+    @customer.user_id = current_user.id
     respond_to do |format|
       if @customer.save
         format.html { redirect_to @customer, notice: 'Customer was successfully created.' }
@@ -60,17 +61,17 @@ class CustomersController < ApplicationController
 
     def show_admin
       if params[:gender].present?
-       @customers= Customer.with_deleted.where(gender: params[:gender]).paginate(page: params[:page], per_page: 5)
+       @customers= Customer.with_deleted.where(gender: params[:gender], user_id: current_user.id).paginate(page: params[:page], per_page: 5)
       else
-       @customers = Customer.with_deleted.paginate(page: params[:page], per_page: 5)
+       @customers = Customer.with_deleted.where(user_id: current_user.id).paginate(page: params[:page], per_page: 5)
       end
     end
 
     def show_no_admin
       if params[:gender].present?
-       @customers= Customer.without_deleted.where(gender: params[:gender]).paginate(page: params[:page], per_page: 5)
+       @customers= Customer.without_deleted.where(gender: params[:gender], user_id: current_user.id).paginate(page: params[:page], per_page: 5)
       else
-       @customers = Customer.without_deleted.paginate(page: params[:page], per_page: 5)
+       @customers = Customer.without_deleted.where(user_id: current_user.id).paginate(page: params[:page], per_page: 5)
       end
     end
 end
