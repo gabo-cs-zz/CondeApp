@@ -18,7 +18,7 @@ class EmployeesController < ApplicationController
 
   def create
     @employee = Employee.new(employee_params)
-    @customer.user_id = current_user.id
+    @employee.user_id = current_user.id
     respond_to do |format|
       if @employee.save
         format.html { redirect_to @employee, notice: 'Employee was successfully created.' }
